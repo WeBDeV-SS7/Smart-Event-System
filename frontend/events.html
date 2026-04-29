@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Events</h2>
+
+    <div id="events"></div>
+
+    <script>
+        const events = [
+            { title: "Hackathon", date: "2026-05-01" },
+            { title: "Workshop", date: "2026-06-10" }
+        ];
+
+        const container = document.getElementById("events");
+
+        events.forEach(e => {
+            container.innerHTML += `
+        <div>
+            <h3>${e.title}</h3>
+            <p>${e.date}</p>
+        </div>
+    `;
+        });
+    </script>
+
+</body>
+
+</html>
