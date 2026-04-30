@@ -1,105 +1,63 @@
-# Smart-Event-System
-
-hi there!!
-this is our first project in collaboration
-
 # 🚀 Smart Event System
 
-```{=html}
-<p align="center">
-```
-
-`<img src="assets/images/logo.png" width="110" alt="EventSphere Logo"/>`{=html}
-
-```{=html}
-</p>
-```
-
-```{=html}
-<p align="center">
-```
-
-`<b>`{=html}✨ A Full-Stack Platform for Seamless Event Discovery &
-Registration ✨`</b>`{=html}`<br>`{=html} Built with modern web
-technologies and collaborative development
-
-```{=html}
-</p>
-```
+Hi there!! 👋  
+This is our first collaborative project.
 
 ---
 
-```{=html}
-<p align="center">
-```
+## ✨ A Full-Stack Platform for Event Management
 
-`<img src="https://img.shields.io/badge/Frontend-HTML-orange?style=for-the-badge&logo=html5"/>`{=html}
-`<img src="https://img.shields.io/badge/Style-CSS-blue?style=for-the-badge&logo=css3"/>`{=html}
-`<img src="https://img.shields.io/badge/UI-Bootstrap-purple?style=for-the-badge&logo=bootstrap"/>`{=html}
-`<img src="https://img.shields.io/badge/Logic-JavaScript-yellow?style=for-the-badge&logo=javascript"/>`{=html}
-`<img src="https://img.shields.io/badge/Backend-Python-green?style=for-the-badge&logo=python"/>`{=html}
-`<img src="https://img.shields.io/badge/Framework-Django-darkgreen?style=for-the-badge&logo=django"/>`{=html}
-`<img src="https://img.shields.io/badge/Database-MySQL-blue?style=for-the-badge&logo=mysql"/>`{=html}
+Built using modern web technologies and teamwork.
 
-```{=html}
-</p>
-```
+---
+
+## 🛠 Tech Stack
+
+- 🎨 Frontend: HTML, CSS, Bootstrap, JavaScript
+- ⚙️ Backend: Python, Django
+- 🗄️ Database: MySQL
 
 ---
 
 ## 👋 About the Project
 
-Hi there!\
-This is our **first collaborative full-stack project** built using
-frontend and backend integration.
+EventSphere is a full-stack event management system that allows users to:
 
-EventSphere helps users: - Discover events\
-
-- Register easily\
-- Manage bookings
-
----
-
-## 📌 Overview
-
-EventSphere is a **full-stack event management system**.
+- 📅 Discover events
+- 🎟 Register easily
+- 📌 Manage bookings
 
 ---
 
 ## 🎯 Core Features
 
-- 🔐 User Authentication\
-- 📅 Event Listing\
-- 🎟 Event Registration\
-- 📌 My Events Dashboard\
+- 🔐 User Authentication
+- 📅 Event Listing
+- 🎟 Event Registration
+- 📌 My Events Dashboard
 - ⚡ API Integration
 
 ---
 
-## 🧠 Tech Stack
-
-Frontend: HTML, CSS, Bootstrap, JS\
-Backend: Python, Django\
-Database: MySQL
-
----
-
-## ⚙️ Setup
+## ⚙️ Setup Instructions
 
 ```bash
 git clone <repo-link>
 cd project-folder
-```
 
-```bash
+Run Backend
+
 git checkout backend
 pip install -r requirements.txt
 python manage.py runserver
-```
 
-```bash
+Run Frontend
+
 git checkout frontend
 open index.html
-```
 
----
+🤝 Collaboration
+frontend branch → UI development
+backend branch → API development
+main → final merged project
+```
