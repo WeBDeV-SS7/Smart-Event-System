@@ -7,8 +7,8 @@ def home(request):
 
 @api_view(['GET'])
 def get_events(request):
-    data = [
+    events = [
         {"title": "Hackathon", "date": "2026-05-01"},
         {"title": "Workshop", "date": "2026-06-10"}
     ]
-    return Response(data)
+    return Response(events)
