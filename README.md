@@ -41,14 +41,19 @@ EventSphere is a full-stack event management system that allows users to:
 
 ## ⚙️ Setup Instructions
 
-```bash
+````bash
 git clone <repo-link>
 cd project-folder
-```
+
+<<<<<<< HEAD
+
+Run Backend
+
 
 git checkout backend
 pip install -r requirements.txt
 python manage.py runserver
+
 
 git checkout frontend
 open index.html
@@ -59,4 +64,14 @@ Run:
 git add README.md
 git commit -m "Clean README (removed HTML issues)"
 git push origin main
-```
+
+Run Frontend
+
+git checkout frontend
+open index.html
+
+🤝 Collaboration
+frontend branch → UI development
+backend branch → API development
+
+````
