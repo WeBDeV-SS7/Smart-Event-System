@@ -1,16 +1,362 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Event System</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventSphere – Smart Event Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-    <h1>Welcome to Event Management</h1>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top es-navbar" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand es-brand" href="index.html">
+                <span class="brand-icon"><i class="bi bi-hexagon-fill"></i></span>
+                EventSphere
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="ms-lg-4 mt-3 mt-lg-0 d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-light btn-sm px-3">Login</a>
+                    <a href="register.html" class="btn btn-es-primary btn-sm px-3">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <a href="login.html">Login</a>
+    <!-- HERO -->
+    <section class="es-hero d-flex align-items-center">
+        <div class="hero-bg-anim"></div>
+        <div class="container position-relative z-1">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="es-badge mb-3 d-inline-block">🚀 Next-Gen Event Platform</span>
+                    <h1 class="es-hero-title">Create Events <br /><span class="es-gradient-text">That Inspire</span>
+                    </h1>
+                    <p class="es-hero-sub mt-3 mb-4">Plan, manage, and run seamless events with intelligent tools — from
+                        registration to real-time analytics.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="events.html" class="btn btn-es-primary btn-lg px-4">Browse Events</a>
+                        <a href="register.html" class="btn btn-outline-light btn-lg px-4">Get Started Free</a>
+                    </div>
+                    <div class="hero-stats d-flex gap-4 mt-5">
+                        <div><span class="stat-num">2</span><br /><small>Events Hosted</small></div>
+                        <div class="stat-divider"></div>
+                        <div><span class="stat-num">98%</span><br /><small>Satisfaction Rate</small></div>
+                        <div class="stat-divider"></div>
+                        <div><span class="stat-num">India</span><br /><small>Country</small></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+                    <div class="hero-card-stack">
+                        <div class="hero-card hc-1">
+                            <i class="bi bi-calendar-event fs-2 mb-2 d-block text-primary"></i>
+                            <strong>Tech Summit 2025</strong>
+                            <p class="small text-warning mb-1">June 14 • New York</p>
+                            <span class="badge bg-success">3,200 Registered</span>
+                        </div>
+                        <div class="hero-card hc-2">
+                            <i class="bi bi-music-note-beamed fs-2 mb-2 d-block text-info"></i>
+                            <strong>Music Fest Live</strong>
+                            <p class="small text-warning mb-1">July 20 • Los Angeles</p>
+                            <span class="badge bg-warning text-dark">Selling Fast</span>
+                        </div>
+                        <div class="hero-card hc-3">
+                            <i class="bi bi-graph-up-arrow fs-2 mb-2 d-block text-danger"></i>
+                            <strong>Growth Conference</strong>
+                            <p class="small text-warning mb-1">Aug 5 • London</p>
+                            <span class="badge bg-primary">500 Spots Left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- FEATURES -->
+    <section class="py-6 bg-dark-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="es-section-label">Why EventSphere</span>
+                <h2 class="es-section-title">Everything You Need to <span class="es-gradient-text">Run Great
+                        Events</span></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="es-feature-card">
+                        <div class="es-feat-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                        <h5>Instant Setup</h5>
+                        <p class="text-primary small">Launch your event page in minutes with our drag-and-drop builder
+                            and
+                            ready-made templates.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-feature-card">
+                        <div class="es-feat-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c)"><i
+                                class="bi bi-qr-code-scan"></i></div>
+                        <h5>Smart Check-In</h5>
+                        <p class="text-primary small">QR-based instant check-in with live attendance tracking and
+                            digital
+                            badge printing.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-feature-card">
+                        <div class="es-feat-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"><i
+                                class="bi bi-bar-chart-line-fill"></i></div>
+                        <h5>Real-time Analytics</h5>
+                        <p class="text-primary small">Deep insights into registrations, ticket sales, engagement, and
+                            post-event surveys.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-feature-card">
+                        <div class="es-feat-icon" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"><i
+                                class="bi bi-credit-card-2-front-fill"></i></div>
+                        <h5>Payments & Tickets</h5>
+                        <p class="text-primary small">Sell tickets, manage early-bird pricing, discount codes, and
+                            multi-tier access passes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-feature-card">
+                        <div class="es-feat-icon" style="background:linear-gradient(135deg,#fa709a,#fee140)"><i
+                                class="bi bi-megaphone-fill"></i></div>
+                        <h5>Email Campaigns</h5>
+                        <p class="text-primary small">Built-in email marketing with automated reminders, confirmations,
+                            and post-event follow-ups.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-feature-card">
+                        <div class="es-feat-icon" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)"><i
+                                class="bi bi-shield-fill-check"></i></div>
+                        <h5>Secure & Scalable</h5>
+                        <p class="text-primary small">Enterprise-grade security with SSL, GDPR compliance, and
+                            infrastructure for 100k+ attendees.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPCOMING EVENTS PREVIEW -->
+    <section class="py-6">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <div>
+                    <span class="es-section-label">Featured</span>
+                    <h2 class="es-section-title mb-0">Upcoming Events</h2>
+                </div>
+                <a href="events.html" class="btn btn-outline-light px-4">View All <i
+                        class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+            <div class="row g-4" id="homeEventCards">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-6 bg-dark-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="es-section-label">Process</span>
+                <h2 class="es-section-title">How It <span class="es-gradient-text">Works</span></h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-3 text-center">
+                    <div class="hiw-step">
+                        <div class="hiw-num">01</div>
+                        <i class="bi bi-person-plus-fill hiw-icon"></i>
+                        <h6 class="mt-3">Create Account</h6>
+                        <p class="text-secondary small">Sign up for free and set up your organizer profile in under 2
+                            minutes.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="hiw-step">
+                        <div class="hiw-num">02</div>
+                        <i class="bi bi-calendar-plus-fill hiw-icon"></i>
+                        <h6 class="mt-3">Create Event</h6>
+                        <p class="text-secondary small">Fill in event details, set dates, manage capacity, and publish
+                            your
+                            page.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="hiw-step">
+                        <div class="hiw-num">03</div>
+                        <i class="bi bi-share-fill hiw-icon"></i>
+                        <h6 class="mt-3">Promote & Register</h6>
+                        <p class="text-secondary small">Share your event link. Attendees register online with automated
+                            confirmations.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="hiw-step">
+                        <div class="hiw-num">04</div>
+                        <i class="bi bi-stars hiw-icon"></i>
+                        <h6 class="mt-3">Run Your Event</h6>
+                        <p class="text-secondary small">Check in guests, monitor analytics live, and gather feedback
+                            automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-6">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="es-section-label">Testimonials</span>
+                <h2 class="es-section-title">What Organizers Say</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="es-testimonial-card">
+                        <div class="stars mb-2">★★★★★</div>
+                        <p class="text-gray small">"EventSphere transformed how we manage our annual hackathon. The
+                            QR
+                            check-in alone saved us 3 hours of admin work."</p>
+                        <div class="d-flex align-items-center gap-3 mt-3">
+                            <div class="testi-avatar">AM</div>
+                            <div><strong class="d-block">Alex Morgan</strong><small class="text-secondary
+                                ">TechConf
+                                    Lead</small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-testimonial-card">
+                        <div class="stars mb-2">★★★★★</div>
+                        <p class="text-gray small">"We sold out 5,000 tickets in 2 hours without a single technical
+                            hiccup. Absolutely bulletproof platform."</p>
+                        <div class="d-flex align-items-center gap-3 mt-3">
+                            <div class="testi-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">SR
+                            </div>
+                            <div><strong class="d-block">Sara Reeves</strong><small class="text-secondary">Festival
+                                    Director</small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="es-testimonial-card">
+                        <div class="stars mb-2">★★★★★</div>
+                        <p class="text-gray small">"The analytics dashboard is insane — real-time graphs, attendee
+                            heatmaps, session engagement. We made data-driven decisions live."</p>
+                        <div class="d-flex align-items-center gap-3 mt-3">
+                            <div class="testi-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">JK
+                            </div>
+                            <div><strong class="d-block">James Keller</strong><small class="text-secondary">Corporate
+                                    Events
+                                    VP</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="es-cta-section py-6">
+        <div class="container text-center">
+            <h2 class="es-section-title mb-3">Ready to Host Your <span class="es-gradient-text">Next Event?</span></h2>
+            <p class="text-secondary mb-4">Join 12,000+ event organizers already using EventSphere.</p>
+            <a href="register.html" class="btn btn-es-primary btn-lg px-5">Start for Free <i
+                    class="bi bi-arrow-right ms-2"></i></a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="es-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <a class="es-brand d-flex align-items-center gap-2 mb-3 text-decoration-none" href="index.html">
+                        <span class="brand-icon"><i class="bi bi-hexagon-fill"></i></span>
+                        <span class="text-white fs-5 fw-bold" style="font-family:'Syne',sans-serif">EventSphere</span>
+                    </a>
+                    <p class="text-secondary small">The intelligent event management platform for organizers who demand
+                        excellence.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="es-social-link"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="es-social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="es-social-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="es-social-link"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="es-footer-heading">Platform</h6>
+                    <ul class="list-unstyled es-footer-links">
+                        <li><a href="events.html">Browse Events</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">API Docs</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="es-footer-heading">Company</h6>
+                    <ul class="list-unstyled es-footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="es-footer-heading">Stay Updated</h6>
+                    <p class="text-secondary small">Get the latest events and platform news delivered to your inbox.</p>
+                    <div class="input-group es-newsletter-input">
+                        <input type="email" class="form-control" placeholder="your@email.com" />
+                        <button class="btn btn-es-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary" />
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <small class="text-secondary">© 2025 EventSphere. All rights reserved.</small>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-secondary small">Privacy Policy</a>
+                    <a href="#" class="text-secondary small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Render 3 featured event cards on home page
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('homeEventCards');
+            const featured = eventsData.slice(0, 3);
+            container.innerHTML = featured.map(renderEventCard).join('');
+        });
+    </script>
 </body>
 
 </html>
