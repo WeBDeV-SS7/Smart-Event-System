@@ -1,6 +1,6 @@
 const BASE_URL = 'http://127.0.0.1:8000/api';
 
-async function apiRequest(endpoint, method = 'GET', data = null) {
+async function apiRequest(endpoint, method = 'GET', data = null, token = null) {
   try {
     const options = {
       method,
@@ -9,13 +9,16 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
       },
     };
 
+    if (token) {
+      options.headers['Authorization'] = `Bearer ${token}`;
+    }
+
     if (data) {
       options.body = JSON.stringify(data);
     }
 
     const res = await fetch(BASE_URL + endpoint, options);
 
-    // Handle HTTP errors
     if (!res.ok) {
       throw new Error(`API Error: ${res.status}`);
     }
@@ -26,3 +29,10 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
     throw error;
   }
 }
+
+// Helpers
+export const getEvents = () => apiRequest('/events/');
+export const register = (data) => apiRequest('/register/', 'POST', data);
+export const login = (data) => apiRequest('/login/', 'POST', data);
+
+export default apiRequest;
