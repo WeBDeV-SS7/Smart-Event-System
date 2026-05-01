@@ -352,7 +352,7 @@
     <script>
         // Render 3 featured event cards on home page
         document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('homeEventCards');
+            const container = docgitument.getElementById('homeEventCards');
             const featured = eventsData.slice(0, 3);
             container.innerHTML = featured.map(renderEventCard).join('');
         });
