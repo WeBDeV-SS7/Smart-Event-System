@@ -41,33 +41,36 @@
             window.location.href = "login.html";
         }
 
-        // Dummy data (replace with API later)
-        const events = [
-            { id: 1, title: "Hackathon", date: "2026-05-01", location: "Bangalore" },
-            { id: 2, title: "Workshop", date: "2026-06-10", location: "Mumbai" },
-            { id: 3, title: "Tech Talk", date: "2026-07-15", location: "Hyderabad" }
-        ];
-
         const container = document.getElementById("eventsContainer");
 
-        // Render cards
-        events.forEach(e => {
-            container.innerHTML += `
-    <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title">${e.title}</h5>
-                <p class="text-muted mb-1">${e.date}</p>
-                <p class="text-muted">${e.location}</p>
+        // Fetch events from API (REPLACED DUMMY DATA)
+        fetch("http://localhost:5000/api/events")   // <-- change URL if needed
+            .then(res => res.json())
+            .then(events => {
 
-                <button class="btn btn-primary w-100"
-                    onclick="registerEvent(${e.id})">
-                    Register
-                </button>
+                events.forEach(e => {
+                    container.innerHTML += `
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">${e.title}</h5>
+                    <p class="text-muted mb-1">${e.date}</p>
+                    <p class="text-muted">${e.location}</p>
+
+                    <button class="btn btn-primary w-100"
+                        onclick="registerEvent(${e.id})">
+                        Register
+                    </button>
+                </div>
             </div>
-        </div>
-    </div>`;
-        });
+        </div>`;
+                });
+
+            })
+            .catch(err => {
+                console.error("Error fetching events:", err);
+                container.innerHTML = "<p class='text-danger text-center'>Failed to load events</p>";
+            });
 
         // Register event
         function registerEvent(eventId) {

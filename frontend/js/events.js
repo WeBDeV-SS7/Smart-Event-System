@@ -8,33 +8,25 @@ function registerEvent(eventId) {
     return;
   }
 
-  // 🔗 Call backend API
-  fetch('http://localhost:8000/api/register-event/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      user_id: userId,
-      event_id: eventId,
-    }),
+  // 🔥 Prevent duplicate registration (frontend check)
+  let myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
+
+  if (myEvents.includes(eventId)) {
+    alert('Already registered for this event');
+    return;
+  }
+
+  // 🔗 Call backend API (clean version)
+  apiRequest('/register-event', 'POST', {
+    user_id: userId,
+    event_id: eventId,
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to register event');
-      }
-      return response.json();
-    })
     .then((data) => {
       console.log('Success:', data);
 
-      // ✅ OPTIONAL: update localStorage for UI
-      let myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
-
-      if (!myEvents.includes(eventId)) {
-        myEvents.push(eventId);
-        localStorage.setItem('myEvents', JSON.stringify(myEvents));
-      }
+      // Update localStorage
+      myEvents.push(eventId);
+      localStorage.setItem('myEvents', JSON.stringify(myEvents));
 
       alert('Event Registered Successfully!');
       location.reload();
