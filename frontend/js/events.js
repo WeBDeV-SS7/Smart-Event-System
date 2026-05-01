@@ -8,31 +8,20 @@ function registerEvent(eventId) {
     return;
   }
 
+  // 2. 🔥 Prevent duplicate registration (frontend check)
   let myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
 
-  // 2. ❌ Prevent duplicate local registration
   if (myEvents.includes(eventId)) {
-    alert('Already registered!');
+    alert('Already registered for this event');
     return;
   }
 
   // 3. 🔗 Call backend API (Django)
-  fetch('http://localhost:8000/api/register/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      user_id: userId,
-      event_id: eventId,
-    }),
+  // Note: Using your apiRequest helper for consistency
+  apiRequest('/register-event', 'POST', {
+    user_id: userId,
+    event_id: eventId,
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to register event');
-      }
-      return response.json();
-    })
     .then((data) => {
       console.log('Success:', data);
 
