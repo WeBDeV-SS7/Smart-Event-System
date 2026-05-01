@@ -17,21 +17,24 @@ function registerEvent(eventId) {
   }
 
   // 3. 🔗 Call backend API (Django)
-  // Note: Using your apiRequest helper for consistency
-  apiRequest('/register-event', 'POST', {
+  // Ensure the URL matches your Django urls.py (usually needs a trailing slash)
+  apiRequest('/register-event/', 'POST', {
     user_id: userId,
     event_id: eventId,
   })
     .then((data) => {
       console.log('Success:', data);
 
-      // 4. ✅ Update localStorage ONLY after API success
-      myEvents.push(eventId);
-      localStorage.setItem('myEvents', JSON.stringify(myEvents));
+      // 4. ✅ Update local cache only after success
+      // We don't redeclare myEvents here, we just use the variable from above
+      if (!myEvents.includes(eventId)) {
+        myEvents.push(eventId);
+        localStorage.setItem('myEvents', JSON.stringify(myEvents));
+      }
 
       alert('Event Registered Successfully!');
 
-      // 5. 🔄 Refresh UI now that data is saved
+      // 5. 🔄 Refresh UI
       location.reload();
     })
     .catch((error) => {

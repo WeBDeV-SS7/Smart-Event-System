@@ -1,41 +1,5 @@
-const eventsData = [
-  {
-    id: 1,
-    title: 'AI & Machine Learning Summit 2025',
-    category: 'Technology',
-    date: 'June 14, 2025',
-    time: '9:00 AM – 6:00 PM',
-    location: 'Jacob Javits Center, New York',
-    price: 149,
-    spots: 3200,
-    spotsLeft: 480,
-    emoji: '🤖',
-    bg: 'linear-gradient(135deg,#141826 0%,#1e1040 100%)',
-    accent: '#7c5cfc',
-    description: 'Explore the frontier of AI with global experts.',
-    tags: ['AI', 'ML', 'Research', 'Networking'],
-  },
-  {
-    id: 2,
-    title: 'Global Music Festival',
-    category: 'Music',
-    date: 'July 20, 2025',
-    time: '2:00 PM – 11:00 PM',
-    location: 'Staples Center, Los Angeles',
-    price: 89,
-    spots: 12000,
-    spotsLeft: 2100,
-    emoji: '🎵',
-    bg: 'linear-gradient(135deg,#141826 0%,#1a1040 100%)',
-    accent: '#f093fb',
-    description: 'Three stages, 40 artists, one night.',
-    tags: ['Music', 'Live', 'Entertainment'],
-  },
-  // (rest unchanged)
-];
-
 // ===============================
-// Render Event Card
+// EVENT CARD RENDER
 // ===============================
 function renderEventCard(event) {
   const pct = Math.round(((event.spots - event.spotsLeft) / event.spots) * 100);
@@ -43,8 +7,9 @@ function renderEventCard(event) {
   return `
   <div class="col-lg-4 col-md-6">
     <div class="es-event-card">
-      <div class="es-event-img" style="background:${event.bg}">
-        <span style="font-size:3.5rem">${event.emoji}</span>
+      <div class="es-event-img" style="background:${event.bg || '#141826'}">
+        <span style="font-size:3.5rem">${event.emoji || '🎉'}</span>
+
         <span class="position-absolute top-0 end-0 m-3 badge text-white"
           style="background:rgba(0,0,0,.5);backdrop-filter:blur(6px)">
           ${event.category}
@@ -60,18 +25,18 @@ function renderEventCard(event) {
         </div>
 
         <div class="mb-1 d-flex justify-content-between">
-          <small>${event.spotsLeft} spots left</small>
-          <small>${pct}% full</small>
+          <small>${event.spotsLeft || 0} spots left</small>
+          <small>${pct || 0}% full</small>
         </div>
 
         <div class="es-progress-bar mb-2">
           <div class="es-progress-fill"
-            style="width:${pct}%; background:${event.accent}">
+            style="width:${pct}%; background:${event.accent || '#7c5cfc'}">
           </div>
         </div>
 
         <div class="d-flex flex-wrap gap-1 mt-1">
-          ${event.tags
+          ${(event.tags || [])
             .map(
               (t) =>
                 `<span class="badge" style="background:rgba(255,255,255,.07);color:#9ca3af;font-size:.65rem">${t}</span>`,
@@ -81,7 +46,8 @@ function renderEventCard(event) {
       </div>
 
       <div class="es-event-footer">
-        <span class="es-event-price">$${event.price}</span>
+        <span class="es-event-price">$${event.price || 0}</span>
+
         <a href="event-detail.html?id=${event.id}" class="btn btn-es-primary btn-sm px-3">
           Register
         </a>
@@ -91,36 +57,42 @@ function renderEventCard(event) {
 }
 
 // ===============================
-// Utils
-// ===============================
-function formatNumber(n) {
-  return n.toLocaleString();
-}
-
-function getParam(name) {
-  return new URLSearchParams(window.location.search).get(name);
-}
-
-// ===============================
-// API LOADER (FINAL VERSION)
+// LOAD EVENTS FROM API
 // ===============================
 async function loadEventsFromAPI() {
   const container = document.getElementById('events-container');
   if (!container) return;
 
-  try {
-    const events = await apiRequest('/events');
+  // 🔄 loading state (IMPORTANT UX FIX)
+  container.innerHTML = `
+    <div class="text-center py-5 w-100">
+      <div class="spinner-border text-light"></div>
+      <p class="mt-2 text-muted">Loading events...</p>
+    </div>
+  `;
 
-    if (!Array.isArray(events) || events.length === 0) {
-      throw new Error('Empty events');
+  try {
+    const events = await apiRequest('/events/');
+
+    if (!Array.isArray(events)) {
+      throw new Error('Invalid API response');
     }
 
     container.innerHTML = events.map(renderEventCard).join('');
   } catch (error) {
     console.error('API load failed:', error);
 
-    // fallback to static data
-    container.innerHTML = eventsData.map(renderEventCard).join('');
+    container.innerHTML = `
+      <div class="text-center py-5 w-100">
+        <h5>Failed to load events</h5>
+        <p class="text-muted">Showing offline data</p>
+      </div>
+    `;
+
+    // fallback (ONLY if needed)
+    if (typeof eventsData !== 'undefined') {
+      container.innerHTML = eventsData.map(renderEventCard).join('');
+    }
   }
 }
 

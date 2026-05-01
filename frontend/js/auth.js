@@ -1,5 +1,5 @@
 // ============================================================
-// AUTH MODULE — EventSphere (CLEAN VERSION)
+// AUTH MODULE — EventSphere (UPDATED + FIXED)
 // ============================================================
 
 // 🔐 REGISTER USER
@@ -15,15 +15,16 @@ async function registerUser(name, email, password) {
       return;
     }
 
-    const res = await apiRequest('/register', 'POST', {
+    const res = await apiRequest('/register/', 'POST', {
       name,
       email,
       password,
     });
 
-    console.log(res);
+    console.log('Register Response:', res);
 
-    if (res.success || res.message) {
+    // Accept Django-style response
+    if (res.id || res.user_id || res.email) {
       alert('Registration successful!');
       window.location.href = 'login.html';
     } else {
@@ -46,17 +47,23 @@ async function loginUser() {
       return;
     }
 
-    const res = await apiRequest('/login', 'POST', {
+    const res = await apiRequest('/login/', 'POST', {
       email,
       password,
     });
 
-    console.log(res);
+    console.log('Login Response:', res);
 
-    if (res.user_id || res.userId || res.id) {
-      const userId = res.user_id || res.userId || res.id;
+    // Accept multiple backend formats
+    const userId = res.user_id || res.userId || res.id;
 
+    if (userId) {
       localStorage.setItem('user_id', userId);
+
+      // OPTIONAL (if backend sends token later)
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+      }
 
       alert('Login successful!');
       window.location.href = 'events.html';
@@ -72,6 +79,7 @@ async function loginUser() {
 // 🚪 LOGOUT
 function logout() {
   localStorage.removeItem('user_id');
+  localStorage.removeItem('token');
   window.location.href = 'index.html';
 }
 
