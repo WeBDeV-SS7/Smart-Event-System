@@ -45,7 +45,7 @@
                 </div>
 
                 <!-- Button -->
-                <button onclick="loginUser()" class="btn btn-es-primary w-100">
+                <button id="loginBtn" class="btn btn-es-primary w-100">
                     <i class="bi bi-box-arrow-in-right me-2"></i> Login
                 </button>
 
@@ -63,6 +63,75 @@
     <!-- JS FILES -->
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
+
+    <!-- COMPLETE LOGIN LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+            const loginBtn = document.getElementById("loginBtn");
+
+            // 🔥 Login function
+            async function handleLogin() {
+                const emailVal = email.value.trim();
+                const passVal = password.value;
+
+                // 🔒 Validation
+                if (!emailVal || !passVal) {
+                    alert("Please enter email and password");
+                    return;
+                }
+
+                if (!emailVal.includes("@")) {
+                    alert("Enter valid email");
+                    return;
+                }
+
+                try {
+                    // ⏳ Loading state
+                    loginBtn.disabled = true;
+                    loginBtn.innerHTML = "Logging in...";
+
+                    // 🔗 Call API function from auth.js
+                    const res = await loginUserAPI(emailVal, passVal);
+
+                    // ✅ success check
+                    if (res.user_id || res.userId || res.id) {
+
+                        const userId = res.user_id || res.userId || res.id;
+
+                        localStorage.setItem("user_id", userId);
+
+                        alert("Login successful!");
+
+                        window.location.href = "events.html";
+
+                    } else {
+                        alert(res.error || "Invalid credentials");
+                    }
+
+                } catch (error) {
+                    console.error("Login Error:", error);
+                    alert("Server error. Please try again.");
+                } finally {
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = `<i class="bi bi-box-arrow-in-right me-2"></i> Login`;
+                }
+            }
+
+            // 🔘 Click login
+            loginBtn.addEventListener("click", handleLogin);
+
+            // ⌨️ Enter key login
+            document.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    handleLogin();
+                }
+            });
+
+        });
+    </script>
 
 </body>
 
