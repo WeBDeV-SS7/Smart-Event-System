@@ -1,7 +1,11 @@
 from django.urls import path
-from . import views   # ✅ correct import
+from .views import home, register, login, events_list, event_detail, register_event
 
 urlpatterns = [
-    path('', views.home),          # http://127.0.0.1:8000/api/
-    path('events/', views.get_events),   # http://127.0.0.1:8000/api/events/
+    path('', home),  # <-- this handles "/api/"
+    path('register/', register),
+    path('login/', login),
+    path('events/', events_list),
+    path('events/<int:id>/', event_detail),
+    path('register-event/', register_event),
 ]
