@@ -49,45 +49,53 @@
         document.addEventListener("DOMContentLoaded", () => {
 
             const container = document.getElementById("myEvents");
-            const myEventsIds = JSON.parse(localStorage.getItem("myEvents")) || [];
+
+            // 🔥 Normalize stored IDs
+            let myEventsIds = JSON.parse(localStorage.getItem("myEvents")) || [];
+            myEventsIds = myEventsIds.map(id => String(id));
 
             // Empty state
             if (myEventsIds.length === 0) {
                 container.innerHTML = `
-        <div class="text-center mt-5">
-          <h5>No events registered</h5>
-          <p class="text-muted">Go register for events to see them here.</p>
-          <a href="events.html" class="btn btn-primary mt-2">Browse Events</a>
-        </div>
-      `;
+            <div class="text-center mt-5">
+                <h5>No events registered</h5>
+                <p class="text-muted">Go register for events to see them here.</p>
+                <a href="events.html" class="btn btn-primary mt-2">Browse Events</a>
+            </div>
+        `;
                 return;
             }
 
-            const myEvents = eventsData.filter(e => myEventsIds.includes(e.id));
+            // 🔥 Filter safely
+            const myEvents = eventsData.filter(e =>
+                myEventsIds.includes(String(e.id))
+            );
 
             container.innerHTML = myEvents.map(e => `
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="card-title">${e.title}</h5>
-            <p class="text-muted mb-1">${e.date}</p>
-            <p class="text-muted">${e.location}</p>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">${e.title}</h5>
+                    <p class="text-muted mb-1">${e.date}</p>
+                    <p class="text-muted">${e.location}</p>
 
-            <button class="btn btn-danger w-100"
-              onclick="removeEvent(${e.id})">
-              Cancel Registration
-            </button>
-          </div>
+                    <button class="btn btn-danger w-100"
+                        onclick="removeEvent('${e.id}')">
+                        Cancel Registration
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     `).join("");
         });
+
 
         // ❌ Remove event
         function removeEvent(eventId) {
             let myEvents = JSON.parse(localStorage.getItem("myEvents")) || [];
 
-            myEvents = myEvents.filter(id => id !== eventId);
+            myEvents = myEvents.map(id => String(id))
+                .filter(id => id !== String(eventId));
 
             localStorage.setItem("myEvents", JSON.stringify(myEvents));
 
@@ -95,7 +103,6 @@
             location.reload();
         }
     </script>
-
 </body>
 
 </html>
