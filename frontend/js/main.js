@@ -154,3 +154,32 @@ function formatNumber(n) {
 function getParam(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
+
+// ✅ 🔥 ADDED API INTEGRATION (MINIMAL CHANGE)
+///////////////////////////////////////////////////////////////
+
+async function loadEventsFromAPI() {
+  try {
+    const events = await apiRequest('/events/');
+
+    const container = document.getElementById('events-container');
+    if (!container) return;
+
+    container.innerHTML = events
+      .map((event) => renderEventCard(event))
+      .join('');
+  } catch (error) {
+    console.error('API load failed:', error);
+
+    // fallback → use static data if API fails
+    const container = document.getElementById('events-container');
+    if (!container) return;
+
+    container.innerHTML = eventsData
+      .map((event) => renderEventCard(event))
+      .join('');
+  }
+}
+
+// ✅ override default behavior
+window.onload = loadEventsFromAPI;

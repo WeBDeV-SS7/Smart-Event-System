@@ -1,25 +1,46 @@
 function registerEvent(eventId) {
+  const userId = localStorage.getItem('user_id');
+
   // 🔒 Check login
-  if (!localStorage.getItem('user_id')) {
+  if (!userId) {
     alert('Please login first');
     window.location.href = 'login.html';
     return;
   }
 
-  let myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
+  // 🔗 Call backend API
+  fetch('http://localhost:8000/api/register-event/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      event_id: eventId,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to register event');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log('Success:', data);
 
-  // ❌ Prevent duplicate
-  if (myEvents.includes(eventId)) {
-    alert('Already registered!');
-    return;
-  }
+      // ✅ OPTIONAL: update localStorage for UI
+      let myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
 
-  // ✅ Add event
-  myEvents.push(eventId);
-  localStorage.setItem('myEvents', JSON.stringify(myEvents));
+      if (!myEvents.includes(eventId)) {
+        myEvents.push(eventId);
+        localStorage.setItem('myEvents', JSON.stringify(myEvents));
+      }
 
-  alert('Event Registered!');
-
-  // 🔄 Refresh UI
-  location.reload();
+      alert('Event Registered Successfully!');
+      location.reload();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Error registering event');
+    });
 }
