@@ -1,7 +1,9 @@
-Smart Event Management System
+## 🚀🚀Smart Event Management System
+
 A full-stack web application designed to streamline event registration, management, and tracking. This project features a robust Django backend coupled with a responsive Frontend interface.
 
-🚀 Features
+## 🚀 Features
+
 User Authentication: Secure registration and login modules for Admins and Participants.
 
 Event Management: Create, edit, and delete events with real-time updates.
@@ -12,7 +14,8 @@ Responsive Design: Optimized for both desktop and mobile viewing.
 
 Database Integration: Scalable MySQL/PostgreSQL storage for event and user records.
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
+
 Frontend: HTML5, CSS3, JavaScript (Pinterest-inspired minimalist design).
 
 Backend: Python 3.x, Django Framework.
@@ -21,7 +24,8 @@ Database: MySQL.
 
 Version Control: Git & GitHub.
 
-📂 Project Structure
+## 📂 Project Structure
+
 Plaintext
 Smart-Event-System/
 │
