@@ -141,6 +141,66 @@ Frontend communicates with backend using REST APIs:
 
 ---
 
+
+## 🛠️ EventSphere – Backend Architecture
+## 📌 Overview
+The EventSphere backend is a robust RESTful API built using the Python Django framework and MySQL. It serves as the core engine for the system, handling data persistence, user authentication, and the business logic required to bridge the 90s vintage/Pinterest-inspired frontend with a secure database.
+
+## 🎨 Tech Stack
+Language: Python 3.x
+
+Framework: Django & Django REST Framework (DRF)
+
+Database: MySQL
+
+Authentication: JWT (JSON Web Tokens) or Session-based Auth
+
+Tools: Postman (for API testing), Git Bash
+
+## ✨ Features
+User Management: Secure registration and login logic using Django's User model and custom serializers.py.
+
+Admin Dashboard: Customized Admin module with an ID column and specialized tracking for event organizers.
+
+Database Schema: Optimized ER diagrams and MySQL schemas for handling "Employee" and "Event" records efficiently.
+
+API Security: CORS (Cross-Origin Resource Sharing) configurations to allow secure communication with the frontend.
+
+Robust Error Handling: Debugged backend registration flows to resolve 400 Bad Request errors during testing.
+
+## 🔗 API Endpoints (Backend Logic)
+POST /api/register/ → Handles user creation and data validation.
+
+POST /api/token/ → Generates authentication tokens for secure sessions.
+
+GET /api/events/ → Queries MySQL database to return event lists as JSON.
+
+POST /api/admin/add-event/ → Exclusive endpoint for Admin-level event creation.
+
+## 📂 Project Structure (Backend Focus)
+Plaintext
+/backend
+├── core/               (Main project settings)
+├── api/                (App for REST API logic)
+│   ├── models.py       (MySQL Database models)
+│   ├── serializers.py  (Data conversion logic)
+│   ├── urls.py         (Route definitions)
+│   └── views.py        (Business logic & logic handling)
+├── manage.py           (Django management script)
+└── requirements.txt    (Project dependencies)
+
+## ⚙️ How it Works (Backend Side)
+Server Startup: The Django development server runs on localhost:8000.
+
+Request Handling: When a request arrives from the frontend (e.g., from your HP Pavilion local environment), the backend validates the headers.
+
+Data Processing: Python logic processes the request, interacts with the MySQL database, and returns the appropriate status code (200 OK, 201 Created, etc.).
+
+## 👨‍💻 Developer
+Mohammed Moizuddin
+Backend Architect & Database Manager
+Full-stack collaborator on the Smart Event System project.
+
 ## ⚙️ How it works
 
 ````bash
