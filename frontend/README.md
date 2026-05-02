@@ -62,6 +62,6 @@ interactions.
 ## DEVELOPER:
 
 [Saniya Shereen/WeBDeV-SS7]
-Batch: 2023-2027
+Batch: 2024-2026
 Project Year: 2026
 ===========================================================
