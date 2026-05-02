@@ -1,1 +1,0 @@
-# Smart Event System - Frontend
