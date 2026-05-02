@@ -73,10 +73,7 @@ python manage.py migrate
 python manage.py runserver 4. Frontend Setup
 Simply open frontend/index.html in your preferred web browser to view the UI.
 
-🤝 The Team
-Moizuddin – Backend Architecture & Database Management.
+## 🤝 The Team
 
 Saniya – Frontend Design & UI/UX Development.
-
-📄 License
-This project is licensed under the MIT License.
+Moizuddin – Backend Architecture & Database Management.
