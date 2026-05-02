@@ -140,7 +140,11 @@ Frontend communicates with backend using REST APIs:
 │ └── main.js
 
 ---
+## 👨‍💻 Developer
 
+## Saniya Shereen
+
+Frontend developed as part of EventSphere full-stack project (collaborative development).
 
 ## 🛠️ EventSphere – Backend Architecture
 ## 📌 Overview
@@ -247,9 +251,5 @@ backend branch → API development
 
 ````
 
-## 👨‍💻 Developer
 
-## Saniya Shereen
 
-Frontend developed as part of EventSphere full-stack project (collaborative development).
->>>>>>> ec651484fb28761932223295b1a5d110fd21ad11
