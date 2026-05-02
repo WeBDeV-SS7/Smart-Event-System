@@ -5,18 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login – EventSphere</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body class="bg-dark text-light">
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-dark bg-dark px-4">
         <a class="navbar-brand es-brand" href="index.html">
             <span class="brand-icon"><i class="bi bi-hexagon-fill"></i></span>
@@ -24,39 +19,30 @@
         </a>
     </nav>
 
-    <!-- LOGIN FORM -->
     <div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
         <div class="col-md-4">
-
             <div class="card p-4 shadow-lg border-0">
                 <h3 class="text-center mb-3">Welcome Back</h3>
                 <p class="text-muted text-center mb-4">Login to continue</p>
 
-                <!-- Email -->
                 <div class="mb-3">
                     <label class="form-label text-secondary">Email</label>
                     <input id="email" type="email" class="form-control" placeholder="Enter your email">
                 </div>
 
-                <!-- Password -->
                 <div class="mb-3">
                     <label class="form-label text-secondary">Password</label>
                     <input id="password" type="password" class="form-control" placeholder="Enter your password">
                 </div>
 
-                <!-- Button -->
                 <button id="loginBtn" class="btn btn-es-primary w-100">
                     <i class="bi bi-box-arrow-in-right me-2"></i> Login
                 </button>
 
-                <!-- Register Link -->
                 <p class="text-center mt-3 mb-0">
-                    Don't have an account?
-                    <a href="register.html" class="text-decoration-none">Sign Up</a>
+                    Don't have an account? <a href="register.html" class="text-decoration-none">Sign Up</a>
                 </p>
-
             </div>
-
         </div>
     </div>
 
@@ -64,75 +50,25 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
 
-    <!-- COMPLETE LOGIN LOGIC -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-
-            const email = document.getElementById("email");
-            const password = document.getElementById("password");
             const loginBtn = document.getElementById("loginBtn");
 
-            // 🔥 Login function
             async function handleLogin() {
-                const emailVal = email.value.trim();
-                const passVal = password.value;
-
-                // 🔒 Validation
-                if (!emailVal || !passVal) {
-                    alert("Please enter email and password");
-                    return;
-                }
-
-                if (!emailVal.includes("@")) {
-                    alert("Enter valid email");
-                    return;
-                }
-
-                try {
-                    // ⏳ Loading state
-                    loginBtn.disabled = true;
-                    loginBtn.innerHTML = "Logging in...";
-
-                    // 🔗 Call API function from auth.js
-                    const res = await loginUserAPI(emailVal, passVal);
-
-                    // ✅ success check
-                    if (res.user_id || res.userId || res.id) {
-
-                        const userId = res.user_id || res.userId || res.id;
-
-                        localStorage.setItem("user_id", userId);
-
-                        alert("Login successful!");
-
-                        window.location.href = "events.html";
-
-                    } else {
-                        alert(res.error || "Invalid credentials");
-                    }
-
-                } catch (error) {
-                    console.error("Login Error:", error);
-                    alert("Server error. Please try again.");
-                } finally {
-                    loginBtn.disabled = false;
-                    loginBtn.innerHTML = `<i class="bi bi-box-arrow-in-right me-2"></i> Login`;
-                }
+                // We call the function defined in auth.js
+                // It will internally handle the redirect and localStorage
+                await loginUser();
             }
 
-            // 🔘 Click login
             loginBtn.addEventListener("click", handleLogin);
 
-            // ⌨️ Enter key login
             document.addEventListener("keypress", (e) => {
                 if (e.key === "Enter") {
                     handleLogin();
                 }
             });
-
         });
     </script>
-
 </body>
 
 </html>
