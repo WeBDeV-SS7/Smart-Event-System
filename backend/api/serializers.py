@@ -6,13 +6,16 @@ from .models import Event, EventRegistration
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'password']
+        fields = ['id', 'username', 'email', 'password'] 
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data.get('email', ''),
+            password=validated_data['password']
+        )
         return user
-
 
 # Event Serializer
 class EventSerializer(serializers.ModelSerializer):
@@ -20,9 +23,11 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = '__all__'
 
-
 # Event Registration Serializer
 class EventRegistrationSerializer(serializers.ModelSerializer):
+    # 🔥 Add this line to nest the event details inside the registration
+    event = EventSerializer(read_only=True)
+
     class Meta:
         model = EventRegistration
-        fields = '__all__'
+        fields = ['id', 'user', 'event', 'registered_at']

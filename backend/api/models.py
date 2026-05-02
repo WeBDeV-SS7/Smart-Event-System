@@ -3,13 +3,13 @@ from django.db import models
 
 class Event(models.Model):
     title = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True, null=True)
     date = models.DateField()
 
     def __str__(self):
         return self.title
 
-
-# 🔥 NEW: Event Registration
 class EventRegistration(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
