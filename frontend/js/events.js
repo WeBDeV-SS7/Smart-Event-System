@@ -17,7 +17,6 @@ function registerEvent(eventId) {
   }
 
   // 3. 🔗 Call backend API (Django)
-  // Ensure the URL matches your Django urls.py (usually needs a trailing slash)
   apiRequest('/register-event/', 'POST', {
     user_id: userId,
     event_id: eventId,
@@ -26,15 +25,17 @@ function registerEvent(eventId) {
       console.log('Success:', data);
 
       // 4. ✅ Update local cache only after success
-      // We don't redeclare myEvents here, we just use the variable from above
+      // Note: We use the existing 'myEvents' variable, no redeclaration needed
       if (!myEvents.includes(eventId)) {
         myEvents.push(eventId);
         localStorage.setItem('myEvents', JSON.stringify(myEvents));
       }
 
-      alert('Event Registered Successfully!');
+      alert('Event Registered Successfully! 🎉');
 
       // 5. 🔄 Refresh UI
+      // If you want better UX without a full reload, you could call your
+      // render functions here instead, but reload is safest for now.
       location.reload();
     })
     .catch((error) => {

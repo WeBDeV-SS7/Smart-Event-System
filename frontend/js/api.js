@@ -36,3 +36,5 @@ export const register = (data) => apiRequest('/register/', 'POST', data);
 export const login = (data) => apiRequest('/login/', 'POST', data);
 
 export default apiRequest;
+document.addEventListener('DOMContentLoaded', loadEventsFromAPI);
+loadEventsFromAPI();
