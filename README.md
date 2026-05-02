@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ## 🚀🚀Smart Event Management System
 
 A full-stack web application designed to streamline event registration, management, and tracking. This project features a robust Django backend coupled with a responsive Frontend interface.
@@ -201,7 +201,8 @@ Request Handling: When a request arrives from the frontend (e.g., from your HP P
 Data Processing: Python logic processes the request, interacts with the MySQL database, and returns the appropriate status code (200 OK, 201 Created, etc.).
 
 ## 👨‍💻 Developer
-Mohammed Moizuddin
+## Mohammed Moizuddin
+
 Backend Architect & Database Manager
 Full-stack collaborator on the Smart Event System project.
 
