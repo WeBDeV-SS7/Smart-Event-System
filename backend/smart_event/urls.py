@@ -3,6 +3,8 @@ URL configuration for smart_event project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
+=======
+    https://docs.djangoproject.com/en/5.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -22,4 +24,9 @@ urlpatterns = [
     path('', home),              # <-- THIS FIXES "/"
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+]
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
 ]
