@@ -15,7 +15,7 @@ async function registerUser(name, email, password) {
       return;
     }
 
-    const res = await apiRequest('/register/', 'POST', {
+    const res = await apiRequest('/register-event/', 'POST', {
       name,
       email,
       password,
