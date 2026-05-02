@@ -57,8 +57,6 @@ Frontend communicates with backend using REST APIs:
 │ ├── auth.js
 │ └── events.js
 │ └── main.js
-│
-└
 
 ---
 
@@ -110,5 +108,6 @@ backend branch → API development
 
 ## 👨‍💻 Developer
 
-Saniya Shereen
+## Saniya Shereen
+
 Frontend developed as part of EventSphere full-stack project (collaborative development).
