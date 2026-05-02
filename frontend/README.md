@@ -19,8 +19,6 @@ The frontend expects a running Django server at `http://127.0.0.1:8000Since you 
 
 I’ve incorporated the **red and black minimalist aesthetic** and the technical details you’ve been working on, including the fixed API logic.
 
----
-
 # 🎉 EventSphere – Frontend
 
 ## 📌 Overview
