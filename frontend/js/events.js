@@ -1,3 +1,4 @@
+console.log('loadEventsFromAPI called');
 function registerEvent(eventId) {
   const userId = localStorage.getItem('user_id');
 
@@ -16,7 +17,7 @@ function registerEvent(eventId) {
     .then((data) => {
       console.log('Success:', data);
 
-      // ⚠️ optional local cache (NOT database)
+      // ⚠️ Local cache only for UI (NOT database)
       let myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
 
       if (!myEvents.includes(eventId)) {
@@ -24,11 +25,13 @@ function registerEvent(eventId) {
         localStorage.setItem('myEvents', JSON.stringify(myEvents));
       }
 
-      alert('Event Registered Successfully!');
-      location.reload();
+      alert('Event Registered Successfully! 🎉');
+
+      // optional better UX (no full reload)
+      // location.reload();
     })
     .catch((error) => {
       console.error('Error:', error);
-      alert('Error registering event');
+      alert('Error registering event. Please try again.');
     });
 }
