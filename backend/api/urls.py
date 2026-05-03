@@ -6,4 +6,5 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('events/', views.event_list, name='event_list'),
     path('register-event/', views.register_event, name='register_event'),
-path('api/cancel-registration/<int:registration_id>/', views.cancel_registration, name='cancel-registration'),path('my-registrations/', views.my_registrations, name='my_registrations'),]
+    path('my-registrations/', views.get_my_registrations, name='my-registrations'),
+path('registrations/<int:pk>/', views.cancel_registration, name='cancel-registration')]

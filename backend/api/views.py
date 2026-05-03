@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny 
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
@@ -15,6 +15,7 @@ def home(request):
     return HttpResponse("<h1>Smart Event Management System API is running 🚀</h1>")
 
 @api_view(['POST'])
+@permission_classes([AllowAny]) 
 def register(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -24,6 +25,7 @@ def register(request):
     return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
+@permission_classes([AllowAny]) 
 def login(request):
     username = request.data.get('username')
     password = request.data.get('password')
@@ -38,17 +40,18 @@ def login(request):
         }, status=200)
     return Response({"error": "Invalid credentials"}, status=401)
 
-# 🔥 FIXED: Added missing event_list for Browse Events
 @api_view(['GET'])
+@permission_classes([AllowAny]) 
 def event_list(request):
     """Fetches all events for the browse events page"""
     events = Event.objects.all()
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 
+# 🔥 RENAMED to match your urls.py error
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def my_registrations(request):
+def get_my_registrations(request):
     """Fetches registrations for the logged-in user"""
     registrations = EventRegistration.objects.filter(user=request.user)
     serializer = EventRegistrationSerializer(registrations, many=True) 
@@ -60,7 +63,6 @@ def register_event(request):
     event_id = request.data.get('event_id')
     try:
         event = Event.objects.get(id=event_id)
-        # Match the model name: EventRegistration
         obj, created = EventRegistration.objects.get_or_create(user=request.user, event=event)
         
         if not created:
@@ -72,10 +74,10 @@ def register_event(request):
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
-def cancel_registration(request, registration_id):
+def cancel_registration(request, pk):
     try:
         # Ensure the user can only delete their own registration
-        registration = EventRegistration.objects.get(id=registration_id, user=request.user)
+        registration = EventRegistration.objects.get(pk=pk, user=request.user)
         registration.delete()
         return Response({"message": "Registration cancelled successfully"}, status=200)
     except EventRegistration.DoesNotExist:
