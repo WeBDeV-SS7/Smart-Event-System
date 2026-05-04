@@ -7,7 +7,7 @@ This is the **backend service** for our collaborative full-stack project.
 
 ## ⚙️ Backend Overview
 
-This backend is built using **Django** and provides REST APIs for managing events, users, and registrations.
+A scalable, production-ready backend service for managing events, users, and registrations, built with Django and Django REST Framework.
 
 ---
 
@@ -21,31 +21,38 @@ This backend is built using **Django** and provides REST APIs for managing event
 
 ## 📁 Project Structure
 
-backend/
-│
-├── manage.py
-├── db.sqlite3
-│
-├── smart_event/
-│ ├── settings.py
-│ ├── urls.py
-│
-├── api/
-│ ├── models.py
-│ ├── views.py
-│ ├── serializers.py
-│ ├── urls.py
-│ └── migrations/
+├── backend/                      ← Backend (Django API )
+│   │
+│   ├── manage.py
+│   │
+│   ├── smart_event/              ← Main Django Project
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── asgi.py
+│   │   └── wsgi.py
+│   │
+│   ├── api/                      ← Django App (Events API)
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py              # Database schema
+│   │   ├── views.py               # Business logic
+│   │   ├── urls.py                # API routing
+│   │   ├── serializers.py         # JSON transformation
+│   │   └── migrations/
+│   │
+│   └── db.sqlite3 (ignored in Git)
 
 ---
 
-## 🎯 Core Features
-
-- 📡 REST API for events
-- 🧾 CRUD Operations
-- 🔐 User Authentication
-- 🔗 Frontend Integration Support
-- ⚡ Fast API responses
+🎯 Key Features
+ -  RESTful API architecture
+ -  Full CRUD operations for events
+ -  Clean and modular codebase
+ -  Authentication-ready system
+ -  Fast and optimized responses
+ -  Easy frontend integration
 
 ---
 
@@ -68,7 +75,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-🌐 API Test
+## 🌐 API Test
 
 http://127.0.0.1:8000/api/events/
 
@@ -87,7 +94,21 @@ After replacing content:
 git add README.md
 ```
 
-🚀 STEP 4 — CONTINUE REBASE
+## 🚀 STEP 4 — CONTINUE REBASE
 git rebase --continue
 🚀 STEP 5 — PUSH
 git push origin backend
+
+---
+
+## 🤝 Collaboration
+backend branch → API & database
+frontend branch → UI
+main → final integration
+
+---
+
+## 👨‍💻 Developer
+
+**Mohammed Moiz**
+Backend Developer
